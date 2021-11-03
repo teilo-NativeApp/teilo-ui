@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   StyleSheet,
   Text,
@@ -14,20 +14,17 @@ import {
   Keyboard,
 } from "react-native";
 
+// * STYLES IMPORT
+import generalStyles from './app/styles/generalStyles';
+import CustomText from './app/components/general/CustomText';
+
+// * COMPONENTS IMPORT
+import Dashboard from './app/screens/dashboard/Dashboard';
+
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>TEST</Text>
-      <StatusBar style="auto" />
+    <SafeAreaView style={generalStyles.appContainer}>
+      <Dashboard/>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
