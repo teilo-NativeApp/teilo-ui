@@ -4,7 +4,6 @@ import {
 } from "react-native";
 
 // * STYLES IMPORT
-import dashboardStyles from './dashboardStyles';
 
 // * COMPONENTS IMPORT
 import CustomText from '../../components/general/CustomText';
@@ -17,7 +16,7 @@ const Dashboard = () => {
     <SafeAreaView>
       <CustomText title={"Hey Jon!"} h1/>
       <CustomText title={"It's Monday"} h1/>
-      <CustomText title={"November 3rd"} h1/>
+      <CustomText title={"November 3rd"} h1 />
 
       <Today/>
       <Upcoming/>
