@@ -1,30 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
 import React from "react";
 import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  Image,
-  TouchableOpacity,
-  Button,
-  Alert,
-  TextInput,
-  Switch,
-  Keyboard,
+  Text
 } from "react-native";
+import {NavigationContainer} from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 // * STYLES IMPORT
-import generalStyles from './app/styles/generalStyles';
-import CustomText from './app/components/general/CustomText';
 
 // * COMPONENTS IMPORT
-import Dashboard from './app/screens/dashboard/Dashboard';
+// import AuthStack from "./app/navigation/AuthStack";
+import AppStack from "./app/navigation/AppStack";
 
 export default function App() {
   return (
-    <SafeAreaView style={generalStyles.appContainer}>
-      <Dashboard/>
-    </SafeAreaView>
-  );
-}
+    <NavigationContainer>
+      <AppStack/>
+      {/* <AuthStack/> */}
+    </NavigationContainer>
+  )  
+};

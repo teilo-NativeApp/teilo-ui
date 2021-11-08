@@ -6,7 +6,7 @@ import {
 
 // * STYLES IMPORT
 import generalStyles from '../../styles/generalStyles';
-import dashboardStyles from './dashboardStyles';
+import dashboardStyles from '../../screens/dashboard/dashboardStyles';
 
 // * COMPONENTS IMPORT
 import CustomText from '../general/CustomText';
@@ -16,7 +16,7 @@ import Badge from '../general/Badge';
 const Today = () => {
   return (
     <View style={dashboardStyles.margin}>
-      <CustomText title={"Today, don't forget to:"} h2/>
+      <CustomText title={"Today, don't forget to:"} h2 />
       <View style={generalStyles.roundedBox}>
 
         <View style={dashboardStyles.rowFlex}>
