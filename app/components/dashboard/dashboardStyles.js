@@ -4,7 +4,6 @@ const dashboardStyles = StyleSheet.create({
   margin:{
     marginTop:30
   },
-
   rowFlex:{
     flexDirection:"row",
     alignItems:"center",

@@ -5,7 +5,7 @@ import {
 
 // * STYLES IMPORT
 import generalStyles from '../../styles/generalStyles';
-import dashboardStyles from '../../screens/dashboard/dashboardStyles';
+import dashboardStyles from './dashboardStyles';
 
 // * COMPONENTS IMPORT
 import CustomText from '../general/CustomText';
