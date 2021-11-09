@@ -11,7 +11,7 @@ const Onboarding = ({navigation}) => {
       }}>
       <TouchableOpacity onPress={() => navigation.navigate('Login')}>
         <Text>
-          Let's go somewhere
+          Login and Signup will be here
         </Text>
       </TouchableOpacity>
     </SafeAreaView>
