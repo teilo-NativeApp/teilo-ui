@@ -1,19 +1,23 @@
 import React, { useContext, useState } from 'react'
 import { SafeAreaView, Text, TextInput, TouchableOpacity } from 'react-native';
 import CustomText from '../../components/general/CustomText';
-import { UserContext } from '../../context/UserContext';
+
+// * CONTEXT IMPORT
+import { AuthContext } from '../../context/AuthContext';
+
+// * STYLES IMPORT
+
+
+// * COMPONENTS IMPORT
 import { loginUser } from '../../hooks/apiCalls';
 
-const Login = () => {
-  const { user, setUser } = useContext(UserContext);
+const Login = ({navigation}) => {
+  const { logIn, setAuthData } = useContext(AuthContext);
   const [email, setEmail] = useState("Meda.Murray27@yahoo.com");
   const [password, setPassword] = useState("room7forlife");
 
   const loginHandler = async () => {
-    const res = await loginUser({ email, password });
-    if(!res.error) {
-      setUser(res);
-    }
+    await logIn({email, password});
   };
 
   return (
