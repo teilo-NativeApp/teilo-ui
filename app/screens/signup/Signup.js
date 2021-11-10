@@ -3,9 +3,20 @@ import { SafeAreaView, Text, Button } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import CustomText from '../../components/general/CustomText';
 import { TextInput } from 'react-native-gesture-handler';
+import { createUser } from '../../hooks/apiCalls';
+import { useAuth } from '../../context/AuthContext';
 
-const Signup = () => {
+const Signup = ({navigation}) => {
+  const { setNewUser } = useAuth();
   const { control, handleSubmit, formState: { errors } } = useForm();
+
+  const signUpHandler = async (data) => {
+    const res = await createUser(data);
+    if (!res.error) {
+      setNewUser(res);
+      navigation.navigate("GroupLoginOrCreation");
+    }
+  };
 
   return (
     <SafeAreaView>
@@ -60,6 +71,7 @@ const Signup = () => {
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
+            autoCapitalize="none"
             placeholder="Desired username"
           />
         )}
@@ -78,6 +90,7 @@ const Signup = () => {
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
+            autoCapitalize="none"
             keyboardType="email-address"
             placeholder="Email"
           />
@@ -125,7 +138,7 @@ const Signup = () => {
         defaultValue=""
       />
       
-      <Button title="Login" onPress={handleSubmit()}/>
+      <Button title="Login" onPress={handleSubmit(signUpHandler)}/>
 
     </SafeAreaView>
   )
