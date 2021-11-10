@@ -1,29 +1,75 @@
-import React, { useContext, useState } from 'react'
-import { SafeAreaView, Text, TextInput, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react'
+import { SafeAreaView, Text, TextInput, TouchableOpacity, Button, Alert } from 'react-native';
 import CustomText from '../../components/general/CustomText';
+import { useForm, Controller } from 'react-hook-form';
 
 // * CONTEXT IMPORT
-import { AuthContext } from '../../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 
 // * STYLES IMPORT
 
 
 // * COMPONENTS IMPORT
-import { loginUser } from '../../hooks/apiCalls';
+// import { loginUser } from '../../hooks/apiCalls';
 
-const Login = ({navigation}) => {
-  const { logIn, setAuthData } = useContext(AuthContext);
-  const [email, setEmail] = useState("Meda.Murray27@yahoo.com");
-  const [password, setPassword] = useState("room7forlife");
+const Login = () => {
+  const { logIn } = useAuth();
 
-  const loginHandler = async () => {
-    await logIn({email, password});
+  const { control, handleSubmit, formState: { errors } } = useForm();
+
+  const loginHandler = async (data) => {
+    await logIn(data);
   };
 
   return (
     <SafeAreaView>
-      <Text>Login Screen</Text>
-      <TextInput
+      <CustomText
+        title="Login Screen"
+        h1
+      />
+      
+      <Controller
+        control={control}
+        rules={{
+          required: true
+        }}
+        render={({ field: { onChange, value, onBlur }}) => (
+          <TextInput
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+            keyboardType="email-address"
+            placeholder="Enter email"
+          />
+        )}
+        name="email"
+        defaultValue=""
+      />
+      {errors.email && <Text>Email is required.</Text>}
+
+      
+      <Controller
+        control={control}
+        rules={{
+          required: true
+        }}
+        render={({ field: { onChange, value, onBlur }}) => (
+          <TextInput
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+            secureTextEntry={true}
+            placeholder="Enter password"
+          />
+        )}
+        name="password"
+        defaultValue=""
+      />
+      {errors.password && <Text>Password is required.</Text>}
+
+      <Button title="Login" onPress={handleSubmit(loginHandler)}/>
+
+      {/* <TextInput
         placeholder="Email"
         value="Meda.Murray27@yahoo.com"
         onChangeText={input => setEmail(input)}>
@@ -38,7 +84,7 @@ const Login = ({navigation}) => {
           title="Login"
           p
         />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </SafeAreaView>
   )
 }
