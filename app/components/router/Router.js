@@ -12,9 +12,9 @@ import { Loading } from "../../screens/loading/Loading";
 const Router = () => {
   const { authData, loading } = useAuth();
 
-  // if (loading) {
-  //   return <Loading/>;
-  // }
+  if (loading) {
+    return <Loading/>;
+  }
 
   return(
     <NavigationContainer>
