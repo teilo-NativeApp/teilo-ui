@@ -4,11 +4,13 @@ import {palette, users, border} from './theme';
 
 const generalStyles = StyleSheet.create({
   AndroidSafeArea: {
+    backgroundColor: palette.light,
     flex: 1,
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
   },
   appContainer: {
-    backgroundColor: palette.light
+    backgroundColor: palette.light,
+    padding:10
   },
   roundedBox: {
     backgroundColor: palette.middle,

@@ -1,9 +1,10 @@
 import React from 'react';
 import {
-  SafeAreaView
+  SafeAreaView, StatusBar, View
 } from "react-native";
 
 // * STYLES IMPORT
+import { palette } from '../../styles/theme';
 import generalStyles from '../../styles/generalStyles';
 
 // * COMPONENTS IMPORT
@@ -14,14 +15,16 @@ import Balance from '../../components/dashboard/Balance';
 
 const Dashboard = () => {
   return (
-    <SafeAreaView style={[generalStyles.AndroidSafeArea, generalStyles.appContainer]}>
-      <CustomText title={"Hey Jon!"} h1/>
-      <CustomText title={"It's Monday"} h1/>
-      <CustomText title={"November 3rd"} h1 />
-
-      <Today/>
-      <Upcoming/>
-      <Balance/>
+    <SafeAreaView style={generalStyles.AndroidSafeArea}>
+      <StatusBar barStyle="dark-content"/>
+      <View style={generalStyles.appContainer}>
+        <CustomText title={"Hey Jon!"} h1/>
+        <CustomText title={"It's Monday"} h1/>
+        <CustomText title={"November 3rd"} h1 />
+        <Today/>
+        <Upcoming/>
+        <Balance/>
+      </View>
     </SafeAreaView>
   )
 }
