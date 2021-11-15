@@ -1,6 +1,9 @@
 import React from 'react';
 import {
-  SafeAreaView, StatusBar, View
+  SafeAreaView,
+  Button,
+  StatusBar, 
+  View
 } from "react-native";
 
 // * STYLES IMPORT
@@ -12,8 +15,11 @@ import Today from '../../components/dashboard/Today';
 import Upcoming from '../../components/dashboard/Upcoming';
 import Balance from '../../components/dashboard/Balance';
 import {Day, Date} from '../../components/general/Time';
+import { useAuth } from '../../context/AuthContext';
 
 const Dashboard = () => {
+  const { authData, signOut } = useAuth();
+  
    return (
     <SafeAreaView style={generalStyles.AndroidSafeArea}>
       <StatusBar barStyle="dark-content"/>
@@ -24,6 +30,8 @@ const Dashboard = () => {
         <Today/>
         <Upcoming/>
         <Balance/>
+        
+        <Button title="Sign Out" onPress={signOut}/>
       </View>
     </SafeAreaView>
   )

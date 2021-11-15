@@ -6,6 +6,7 @@ export const AuthContext = createContext();
 
 export const AuthContextProvider = (props) => {
   const [authData, setAuthData] = useState({});
+  const [newUser, setNewUser] = useState({})
   const [loading, setLoading] = useState(true);
 
   // * CHECK STORAGE FOR USER
@@ -59,7 +60,7 @@ export const AuthContextProvider = (props) => {
   };
 
   return (
-    <AuthContext.Provider value={{ authData, setAuthData, loading, logIn, signOut }}>
+    <AuthContext.Provider value={{ authData, setAuthData, loading, logIn, signOut, newUser, setNewUser }}>
       {props.children}
     </AuthContext.Provider>
   )

@@ -6,12 +6,17 @@ const Onboarding = ({navigation}) => {
     <SafeAreaView
       style={{
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'space-evenly',
         alignItems: 'center',
       }}>
       <TouchableOpacity onPress={() => navigation.navigate('Login')}>
         <Text>
-          Login and Signup will be here
+          Login
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+        <Text>
+          Signup
         </Text>
       </TouchableOpacity>
     </SafeAreaView>
