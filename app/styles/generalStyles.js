@@ -3,9 +3,14 @@ import { StyleSheet } from "react-native";
 import {palette, users, border} from './theme';
 
 const generalStyles = StyleSheet.create({
-  appContainer: {
-    margin: 16,
+  AndroidSafeArea: {
     backgroundColor: palette.light,
+    flex: 1,
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+  },
+  appContainer: {
+    backgroundColor: palette.light,
+    padding:10
   },
   roundedBox: {
     backgroundColor: palette.middle,

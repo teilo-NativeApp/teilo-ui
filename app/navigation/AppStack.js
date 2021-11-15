@@ -20,9 +20,11 @@ const Drawer = createDrawerNavigator();
 
 const AppStack = () => {
   return (
-    <Drawer.Navigator initialRouteName="Dashboard"
+    <Drawer.Navigator 
+    initialRouteName="Dashboard"
     drawerContent={props=><DrawerMenu {...props}/>}
     screenOptions={{
+      drawerPosition:"right",
       headerShown: false,
       drawerActiveBackgroundColor: palette.dark,
       drawerActiveTintColor: "black",
