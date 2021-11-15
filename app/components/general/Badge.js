@@ -8,9 +8,9 @@ const Badge = ({title, userColor, task, event}) => {
     <Text style={[
     {
       borderWidth:2,
-      paddingVertical:4,
-      paddingHorizontal:20,
-      borderRadius:15,
+      paddingVertical:2,
+      paddingHorizontal:12,
+      borderRadius:13,
       overflow: "hidden",
     },
     task && {backgroundColor: userColor},

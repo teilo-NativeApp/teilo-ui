@@ -13,10 +13,13 @@
     "@react-navigation/native-stack": "^6.2.5",
     "axios": "^0.24.0",
     "expo": "~43.0.0",
+    "expo-secure-store": "~11.0.3",
     "expo-status-bar": "~1.1.0",
+    "moment": "^2.29.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-hook-form": "^7.19.1",
+    "react-live-clock": "^5.3.1",
     "react-native": "0.64.2",
     "react-native-bouncy-checkbox": "^2.1.7",
     "react-native-encrypted-storage": "^4.0.2",
@@ -26,8 +29,7 @@
     "react-native-screens": "~3.8.0",
     "react-native-web": "0.17.1",
     "react-navigation": "^4.4.4",
-    "react-navigation-drawer": "^2.7.1",
-    "expo-secure-store": "~11.0.3"
+    "react-navigation-drawer": "^2.7.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

@@ -5,6 +5,7 @@ import { useForm, Controller } from 'react-hook-form';
 
 // * CONTEXT IMPORT
 import { useAuth } from '../../context/AuthContext';
+import generalStyles from '../../styles/generalStyles';
 
 // * STYLES IMPORT
 
@@ -22,7 +23,7 @@ const Login = () => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={generalStyles.AndroidSafeArea}>
       <CustomText
         title="Login Screen"
         h1

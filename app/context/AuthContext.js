@@ -10,8 +10,13 @@ export const AuthContextProvider = (props) => {
 
   // * CHECK STORAGE FOR USER
 
-  useEffect(() => {
+  useEffect( () => {
     retrieveUserSession();
+
+    // * * * * 
+    // * ↓ just for debugging ↓ *
+    // SecureStore.deleteItemAsync("user_session");
+    // * * * * 
   }, []);
 
   const retrieveUserSession = async () => {
@@ -33,6 +38,7 @@ export const AuthContextProvider = (props) => {
   const logIn = async (data) => {
     const authData = await loginUser(data);
     setAuthData(authData);
+    console.log(authData);
     try {
       await SecureStore.setItemAsync(
         "user_session",
