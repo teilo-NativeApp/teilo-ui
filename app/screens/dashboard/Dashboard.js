@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   SafeAreaView,
-  Button,
   StatusBar, 
   View
 } from "react-native";
@@ -18,8 +17,6 @@ import {Day, Date} from '../../components/general/Time';
 import { useAuth } from '../../context/AuthContext';
 
 const Dashboard = () => {
-  const { authData, signOut } = useAuth();
-  
    return (
     <SafeAreaView style={generalStyles.AndroidSafeArea}>
       <StatusBar barStyle="dark-content"/>
@@ -30,8 +27,6 @@ const Dashboard = () => {
         <Today/>
         <Upcoming/>
         <Balance/>
-        
-        <Button title="Sign Out" onPress={signOut}/>
       </View>
     </SafeAreaView>
   )

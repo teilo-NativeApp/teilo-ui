@@ -57,9 +57,7 @@ const Upcoming = () => {
             <Badge title={"task"} event userColor={"red"} style={{flex:1}}/>
           </View>
         </View>
-
         
-
       </View>
     </View>
   )

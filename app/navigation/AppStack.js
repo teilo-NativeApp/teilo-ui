@@ -29,7 +29,7 @@ const AppStack = () => {
       drawerActiveBackgroundColor: palette.dark,
       drawerActiveTintColor: "black",
       drawerInactiveTintColor: "black"
-    }}>
+    }} >
       <Drawer.Screen component={Calculator} name="Calculator" options={
         {drawerIcon: (()=>{
           return <Text style={drawerStyles.icons}>🧮</Text>
@@ -53,11 +53,14 @@ const AppStack = () => {
           return <Text style={drawerStyles.icons}>🛋</Text>
         })}
       }/>
+
       <Drawer.Screen component={Settings} name="Settings" options={
         {drawerIcon: (()=>{
           return <Text style={drawerStyles.icons}>⚙️</Text>
         })}
       }/>
+
+      {/* <Button title="Sign Out" onPress={signOut}/> */}
 
     </Drawer.Navigator>
   )

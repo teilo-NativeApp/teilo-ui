@@ -13,11 +13,6 @@ export const AuthContextProvider = (props) => {
 
   useEffect( () => {
     retrieveUserSession();
-
-    // * * * * 
-    // * ↓ just for debugging ↓ *
-    // SecureStore.deleteItemAsync("user_session");
-    // * * * * 
   }, []);
 
   const retrieveUserSession = async () => {

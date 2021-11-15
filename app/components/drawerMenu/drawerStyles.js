@@ -13,4 +13,4 @@ const drawerStyles = StyleSheet.create({
   }
 });
 
-export default drawerStyles; 
+export default drawerStyles;
