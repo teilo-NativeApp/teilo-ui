@@ -15,6 +15,8 @@ const Signup = ({navigation}) => {
     if (!res.error) {
       setNewUser(res);
       navigation.navigate("GroupLoginOrCreation");
+    } else {
+      console.log(res.error);
     }
   };
 
@@ -131,14 +133,14 @@ const Signup = ({navigation}) => {
             value={value}
             secureTextEntry={true}
             keyboardType="numeric"
-            placeholder="Income (can be added later)"
+            placeholder="Monthly Net Income (can be added later)"
           />
         )}
         name="income"
         defaultValue=""
       />
       
-      <Button title="Login" onPress={handleSubmit(signUpHandler)}/>
+      <Button title="Signup" onPress={handleSubmit(signUpHandler)}/>
 
     </SafeAreaView>
   )

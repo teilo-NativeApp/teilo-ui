@@ -1,6 +1,7 @@
 import React from 'react';
 import {
-  SafeAreaView
+  SafeAreaView,
+  Button
 } from "react-native";
 
 // * STYLES IMPORT
@@ -10,8 +11,13 @@ import CustomText from '../../components/general/CustomText';
 import Today from '../../components/dashboard/Today';
 import Upcoming from '../../components/dashboard/Upcoming';
 import Balance from '../../components/dashboard/Balance';
+import { useAuth } from '../../context/AuthContext';
 
 const Dashboard = () => {
+  const { authData, signOut } = useAuth();
+
+  console.log(authData);
+
   return (
     <SafeAreaView>
       <CustomText title={"Hey Jon!"} h1/>
@@ -21,6 +27,8 @@ const Dashboard = () => {
       <Today/>
       <Upcoming/>
       <Balance/>
+
+      <Button title="Sign Out" onPress={signOut}/>
     </SafeAreaView>
   )
 }

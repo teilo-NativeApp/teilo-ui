@@ -28,3 +28,19 @@ export const createUser = async (data) => {
     return error;
   };
 };
+
+export const updateUser = async (data) => {
+  const { _id } = data;
+  delete data._id;
+  try {
+    const res = await(await fetch(`${serverURL}/users/${_id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+      credentials: "include"
+    })).json();
+    return res;
+  } catch (error) {
+    return error;
+  };
+};
