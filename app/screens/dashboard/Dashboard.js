@@ -2,7 +2,7 @@ import React from 'react';
 import {
   SafeAreaView,
   StatusBar, 
-  View
+  ScrollView
 } from "react-native";
 
 // * STYLES IMPORT
@@ -17,17 +17,19 @@ import {Day, Date} from '../../components/general/Time';
 import { useAuth } from '../../context/AuthContext';
 
 const Dashboard = () => {
+  const { authData } = useAuth();
+
    return (
     <SafeAreaView style={generalStyles.AndroidSafeArea}>
       <StatusBar barStyle="dark-content"/>
-      <View style={generalStyles.appContainer}>
-        <CustomText title={"Hey Jon!"} h1/>
-        <CustomText title={`It's ${Day()}`} h1/>
-        <CustomText title={`${Date()}`} h1 />
+      <ScrollView style={generalStyles.appContainer}>
+        <CustomText title={`Hey ${authData.firstName}!`} h1 bold/>
+        <CustomText title={`It's ${Day()}`} h1 bold/>
+        <CustomText title={`${Date()}`} h1 bold/>
         <Today/>
         <Upcoming/>
         <Balance/>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }

@@ -34,7 +34,6 @@ export const AuthContextProvider = (props) => {
   const logIn = async (data) => {
     const authData = await loginUser(data);
     setAuthData(authData);
-    console.log(authData);
     try {
       await SecureStore.setItemAsync(
         "user_session",
