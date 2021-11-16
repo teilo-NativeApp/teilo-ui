@@ -65,4 +65,22 @@ export const createGroup = async (data) => {
     return error;
   };
 };
+
+export const getDashboardData = async (data) => {
+  
+  try {
+    const res = await(await fetch(`${serverURL}/groups`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+      credentials: "include"
+    })).json();
+    return res;
+  } catch (error) {
+    return error;
+  };
+};
+
+
+
 // --------------------------------------------------

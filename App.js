@@ -3,6 +3,7 @@ import Router from "./app/components/router/Router";
 
 // * CONTEXT IMPORT
 import { AuthContextProvider } from "./app/context/AuthContext";
+import { GroupContextProvider } from "./app/context/GroupContext";
 
 // * STYLES IMPORT
 
@@ -11,7 +12,9 @@ import { AuthContextProvider } from "./app/context/AuthContext";
 export default function App() {
   return (
     <AuthContextProvider>
-      <Router/>
+      <GroupContextProvider>
+        <Router/>
+      </GroupContextProvider>
     </AuthContextProvider>
   )  
 };

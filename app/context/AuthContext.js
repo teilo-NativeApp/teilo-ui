@@ -6,7 +6,7 @@ export const AuthContext = createContext();
 
 export const AuthContextProvider = (props) => {
   const [authData, setAuthData] = useState({});
-  const [newUser, setNewUser] = useState({})
+  const [newUser, setNewUser] = useState({});
   const [loading, setLoading] = useState(true);
 
   // * CHECK STORAGE FOR USER
