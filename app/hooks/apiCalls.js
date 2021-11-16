@@ -32,12 +32,13 @@ export const createUser = async (data) => {
 };
 
 export const updateUser = async (data) => {
-  const { _id } = data;
-  delete data._id;
+  const { _id, token } = data;
+  // delete data._id;
+  console.log({token});
   try {
     const res = await(await fetch(`${serverURL}/users/${_id}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Auth": token },
       body: JSON.stringify(data),
       credentials: "include"
     })).json();
