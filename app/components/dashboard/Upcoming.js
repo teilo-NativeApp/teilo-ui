@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text
-} from "react-native";
+import { View } from "react-native";
 
 // * STYLES IMPORT
 import generalStyles from '../../styles/generalStyles';
@@ -19,7 +16,7 @@ const Upcoming = () => {
       <View style={generalStyles.roundedBox}>
 
         <View>
-          <View style={dashboardStyles.rowFlex} >
+          <View style={dashboardStyles.rowFlex}>
             <CustomText title={"04.11.2021"} p bold style={{width:120}}/>
             <CustomText title={"clean kitchen"} p style={{flex:1}}/>
             <Badge title={"task"} task userColor={"red"} style={{flex:1}}/>

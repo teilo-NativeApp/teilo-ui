@@ -1,7 +1,5 @@
 import React from 'react'
-import {
-  Text
-} from "react-native";
+import { Text } from "react-native";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 // * STYLES IMPORT
@@ -59,8 +57,6 @@ const AppStack = () => {
           return <Text style={drawerStyles.icons}>⚙️</Text>
         })}
       }/>
-
-      {/* <Button title="Sign Out" onPress={signOut}/> */}
 
     </Drawer.Navigator>
   )
