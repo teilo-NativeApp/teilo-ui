@@ -65,6 +65,14 @@ export const createGroup = async (data) => {
   };
 };
 
+export const getDashboardData = async (groupId) => {
+  try {
+    const res = await(await fetch(`${serverURL}/groups/${groupId}`)).json();
+    return res;
+  } catch (error) {
+    return error;
+  };
+};
 
 export const updateGroup = async (data) => {
   const { groupID } = data;

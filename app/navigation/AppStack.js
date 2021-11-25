@@ -4,7 +4,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 // * STYLES IMPORT
 import drawerStyles from '../components/drawerMenu/drawerStyles';
-import {palette} from '../styles/theme'
+import {palette} from '../styles/theme';
 
 // * COMPONENTS IMPORT
 import DrawerMenu from '../components/drawerMenu/DrawerMenu';
