@@ -3,7 +3,7 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 export const GroupContext = createContext();
 
 export const GroupContextProvider = (props) => {
-  const [groupData, setGroupData] = useState({});
+  const [groupData, setGroupData] = useState({tasks:[], events:[]});
 
   return (
     <GroupContext.Provider value={{ groupData, setGroupData }}>
