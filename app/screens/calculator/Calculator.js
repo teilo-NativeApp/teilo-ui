@@ -7,15 +7,24 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 // * STYLES IMPORT
 import generalStyles from '../../styles/generalStyles';
+import { useAuth } from '../../context/AuthContext';
+import { updateGroup } from '../../hooks/apiCalls';
 
 const Calculator = () => {
   const [isPickerOpen, setIsPickerOpen] = useState(false);
   const [date, setDate] = useState(new Date(Date.now()));
 
+  const { authData } = useAuth();
+
   const { control, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = async (data) => {
-    console.log({...data, expenseDate: date});
+    // need to change this to use addExpense controller from backend
+    data.date = date;
+    data.whoPaid = authData._id;
+    const dataToSend = {expenses: data, groupID: authData.groups[0]};
+    const res = await updateGroup(dataToSend);
+    console.log(res);
   };
 
   const datePickerHandler = (selectedDate) => {
@@ -60,10 +69,10 @@ const Calculator = () => {
             autoCapitalize="none"
           />
         )}
-        name="expenseTitle"
+        name="expenseName"
         defaultValue=""
       />
-      {errors.expenseTitle && <Text>Title is required.</Text>}
+      {errors.expenseName && <Text>Name is required.</Text>}
       
       <Controller
         control={control}
@@ -79,10 +88,10 @@ const Calculator = () => {
             placeholder="Cost"
           />
         )}
-        name="expenseCost"
+        name="totalCost"
         defaultValue=""
       />
-      {errors.expenseCost && <Text>Cost is required.</Text>}
+      {errors.totalCost && <Text>Cost is required.</Text>}
 
       <Controller
         control={control}
@@ -95,9 +104,10 @@ const Calculator = () => {
             onChangeText={onChange}
             value={date.toLocaleDateString()}
             placeholder="Date"
+            onBlur={onBlur}
           />
         )}
-        name="expenseDate"
+        name="date"
         defaultValue=""
       />
 
@@ -108,7 +118,7 @@ const Calculator = () => {
                 <DateTimePicker
                   minimumDate={new Date(1901, 0, 1)}
                   maximumDate={new Date()}
-                  value={new Date()}
+                  value={date}
                   mode="date"
                   display="default"
                   onChange={(event, value) => datePickerHandler(value)}
