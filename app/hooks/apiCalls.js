@@ -52,7 +52,6 @@ export const updateUser = async (data) => {
 
 // GROUPS -------------------------------------------
 export const createGroup = async (data) => {
-  
   try {
     const res = await(await fetch(`${serverURL}/groups`, {
       method: "POST",
@@ -75,6 +74,19 @@ export const getDashboardData = async (groupId) => {
   };
 };
 
-
-
+export const updateGroup = async (data) => {
+  const { groupID } = data;
+  
+  try {
+    const res = await(await fetch(`${serverURL}/groups/${groupID}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+      credentials: "include"
+    })).json();
+    return res;
+  } catch (error) {
+    return error;
+  };
+};
 // --------------------------------------------------

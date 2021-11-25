@@ -41,6 +41,7 @@ const Login = () => {
             value={value}
             keyboardType="email-address"
             placeholder="Enter email"
+            autoCapitalize="none"
           />
         )}
         name="email"
