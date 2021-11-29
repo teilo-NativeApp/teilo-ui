@@ -1,6 +1,7 @@
 // Two functions that use data from the expenses array in the Group model to split costs between relevant group members, either evenly or 'fairly' (based on income of each user involved)
 
-export const expenseCalculationByIncome = () => {
+
+export const expenseCalculationByIncome = (users, expenses) => {
   // create the data structure for each user
   const roundToTwoDecimals = (number) => {
     return +number.toFixed(2);
@@ -78,11 +79,11 @@ export const expenseCalculationByIncome = () => {
   return calculateBalances;
 };
 
-const result = expenseCalculationByIncome();
+// const result = expenseCalculationByIncome();
 
-result.forEach(i=>{
-  console.log(i);
-});
+// result.forEach(i=>{
+//   console.log(i);
+// });
 
 
  // * ******************************************** * //
@@ -105,7 +106,7 @@ result.forEach(i=>{
   // 15. update their amount with the splitAmount
 
 
-export const expenseCalculationEvenly = () => {
+export const expenseCalculationEvenly = (users, expenses) => {
   // create the data structure for each user
   const prepareDataStructure = users.map(user=>{
 

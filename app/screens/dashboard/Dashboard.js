@@ -8,6 +8,7 @@ import CustomText from '../../components/general/CustomText';
 import Today from '../../components/dashboard/Today';
 import Upcoming from '../../components/dashboard/Upcoming';
 import Balance from '../../components/dashboard/Balance';
+import { expenseCalculationByIncome, expenseCalculationEvenly } from '../../hooks/calculation';
 
 // * CONTEXT IMPORT
 import { useAuth } from '../../context/AuthContext';
@@ -17,12 +18,24 @@ import { useGroup } from '../../context/GroupContext';
 import generalStyles from '../../styles/generalStyles';
 
 const Dashboard = () => {
-  const { authData, setLoading } = useAuth();
-  const { setGroupData } = useGroup();
+  const { authData, setAuthData, setLoading } = useAuth();
+  const { groupData, setGroupData } = useGroup();
 
   useEffect(() => {
     threeDayData();
   }, [])
+
+  useEffect(() => {
+    calculateBalance()
+  }, [groupData])
+
+
+  const calculateBalance = () => {
+    const { users, expenses } = groupData;
+    const allBalances = groupData.incomeBased ? expenseCalculationByIncome(users, expenses) : expenseCalculationEvenly(users, expenses);
+    const userLoggedIn = allBalances.find(item => item._id === authData._id);
+    setAuthData({...authData, ...userLoggedIn});
+  };
 
   const threeDayData = async() => {
     try {
