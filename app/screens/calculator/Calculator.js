@@ -5,6 +5,8 @@ import CustomText from '../../components/general/CustomText';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import SelectBox from 'react-native-multi-selectbox';
 
+// * COMPONENTS IMPORT
+import Balance from '../../components/dashboard/Balance';
 
 // * STYLES IMPORT
 import generalStyles from '../../styles/generalStyles';
@@ -25,16 +27,30 @@ const Calculator = () => {
     return {item: `${user.firstName} ${user.lastName[0]}`, id: user._id}
   });
 
+  const usersForMultiSelect = usersForSelectBox.filter(user => user.id !== whoPaid.id);
+
   const { control, handleSubmit, formState: { errors } } = useForm();
 
   const onSelect = () => {
     return (val) => setWhoPaid(val)
   };
 
+  const onMultiChange = () => {
+    return (item) => {
+      const result = assignedUsers?.find(user => item.id === user.id);
+      if(result) {
+        const tempArr = assignedUsers.filter(user => user.id !== result.id);
+        setAssignedUsers(tempArr);
+      } else {
+        setAssignedUsers([...assignedUsers, item])}
+      }
+  }
+
   const onSubmit = async (data) => {
     // need to change this to use addExpense controller from backend
     data.date = date;
     data.whoPaid = whoPaid.id;
+    data.assignedUsers = [...assignedUsers.map(user => user.id), whoPaid.id];
     const dataToSend = {expenses: data, groupID: authData.groups[0]};
     console.log(dataToSend);
     // const res = await updateGroup(dataToSend);
@@ -63,6 +79,8 @@ const Calculator = () => {
           title="Overview: "
           h3
         />
+
+        <Balance/>
         
         <CustomText
           title="Add Expense: "
@@ -138,7 +156,7 @@ const Calculator = () => {
                   onChange={(event, value) => {
                     datePickerHandler(value)
                     showDatePicker()
-                  }
+                    }
                   }
                 />
                </View>
@@ -161,6 +179,25 @@ const Calculator = () => {
         name="whoPaid"
         defaultValue=""
       />
+      
+      {whoPaid ? <Controller
+        control={control}
+        rules={{
+          required: false
+        }}
+        render={({ field: { onChange, value, onBlur }}) => (
+          <SelectBox
+            label={`Who else is sharing the cost with ${whoPaid.item}?`}
+            options={usersForMultiSelect}
+            selectedValues={assignedUsers}
+            onMultiSelect={onMultiChange()}
+            onTapClose={onMultiChange()}
+            isMulti
+          />
+        )}
+        name="assignedUsers"
+        defaultValue=""
+      />: null }
 
 
       <Button title="Add Expense" onPress={handleSubmit(onSubmit)}/>
