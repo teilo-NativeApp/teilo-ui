@@ -55,7 +55,7 @@ const Dashboard = () => {
         <StatusBar barStyle="dark-content"/>
       </SafeAreaView>
       <ScrollView style={generalStyles.appContainer}>
-        <CustomText title={`Hey ${authData.firstName}!`} h1/>
+        <CustomText title={`Hey 👋 ${authData.firstName}!`} h1/>
         <CustomText title={`It's ${moment().format("dddd")}`} h1/>
         <CustomText title={`${moment().format("MMMM Do")}`} h1/>
         <Today/>

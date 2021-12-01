@@ -32,7 +32,7 @@ const Upcoming = () => {
     groupData.tasks.map((task, index)=>{
       const newTask = (
         <View key={`t-${index}`} style={dashboardStyles.rowFlex}>
-          <CustomText title={`${moment(task.date).format("DD.MM.YY")}`} p bold style={{width:120}}/>
+          <CustomText title={`${moment(task.date).format("DD.MM.YY")}`} p bold style={{width:90}}/>
           <CustomText title={task.title} p style={{flex:1}}/>
           <Badge title={"task"} task userColor={"red"} style={{flex:1}}/>
         </View>
@@ -46,7 +46,7 @@ const Upcoming = () => {
       const eventMinutes = moment(event.date).format("mm");
       const newEvent = (
         <View key={`e-${index}`} style={dashboardStyles.rowFlex} >
-          <CustomText title={`${moment(event.date).format("DD.MM.YY")}`} p bold style={{width:120}}/>
+          <CustomText title={`${moment(event.date).format("DD.MM.YY")}`} p bold style={{width:90}}/>
           <CustomText title={event.title} p style={{flex:1}}/>
           <Badge title={`${eventHours}:${eventMinutes}`} event style={{flex:1}}/>
         </View>
