@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Button, SafeAreaView, ScrollView, StatusBar, Text, TextInput, View } from 'react-native'
 import { useForm, Controller } from 'react-hook-form';
+
+// * COMPONENTS IMPORT
 import CustomText from '../../components/general/CustomText';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import SelectBox from 'react-native-multi-selectbox';
-
-// * COMPONENTS IMPORT
 import Balance from '../../components/dashboard/Balance';
 
 // * STYLES IMPORT
@@ -15,21 +15,37 @@ import { useGroup } from '../../context/GroupContext';
 import { updateGroup } from '../../hooks/apiCalls';
 
 const Calculator = () => {
+  // Hooks and functions for DateTimePicker
   const [isPickerOpen, setIsPickerOpen] = useState(false);
   const [date, setDate] = useState(new Date(Date.now()));
+
+  const datePickerHandler = (selectedDate) => {
+    if (Platform.OS === 'android') setIsPickerOpen(false)
+    setDate(selectedDate);
+  };
+
+  const showDatePicker = () => {
+    setIsPickerOpen(!isPickerOpen);
+  };
+  
+  // States to collect and save to the Group model in backend
   const [whoPaid, setWhoPaid] = useState("");
   const [assignedUsers, setAssignedUsers] = useState([]);
+  
+  // Hooks for Forms
+  const { reset, control, handleSubmit, formState: { errors } } = useForm();
 
+  // Accessing objects and methods from context
   const { authData } = useAuth();
-  const { groupData } = useGroup();
+  const { groupData, setGroupData } = useGroup();
 
+  
+  // Functions and arrays for use with Multiselect
   const usersForSelectBox = groupData.users.map(user => {
     return {item: `${user.firstName} ${user.lastName[0]}`, id: user._id}
   });
 
   const usersForMultiSelect = usersForSelectBox.filter(user => user.id !== whoPaid.id);
-
-  const { control, handleSubmit, formState: { errors } } = useForm();
 
   const onSelect = () => {
     return (val) => setWhoPaid(val)
@@ -46,24 +62,18 @@ const Calculator = () => {
       }
   }
 
+  // Submit handler for Form
   const onSubmit = async (data) => {
-    // need to change this to use addExpense controller from backend
+    // Assigning data from state hooks to the object to be sent in updateGroup API call
     data.date = date;
     data.whoPaid = whoPaid.id;
     data.assignedUsers = [...assignedUsers.map(user => user.id), whoPaid.id];
+
     const dataToSend = {expenses: data, groupID: authData.groups[0]};
-    console.log(dataToSend);
-    // const res = await updateGroup(dataToSend);
-    // console.log(res);
-  };
-
-  const datePickerHandler = (selectedDate) => {
-    if (Platform.OS === 'android') setIsPickerOpen(false)
-    setDate(selectedDate);
-  };
-
-  const showDatePicker = () => {
-    setIsPickerOpen(!isPickerOpen);
+    const res = await updateGroup(dataToSend);
+    console.log("RESPONSE --> ", res);
+    setGroupData(res);
+    reset();
   };
 
   return (
