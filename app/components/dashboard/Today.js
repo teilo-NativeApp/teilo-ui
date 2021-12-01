@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import moment from 'moment';
-import { View,
-  Text
-} from "react-native";
+import { View} from "react-native";
 
 // * CONTEXT IMPORT
 import { useGroup } from '../../context/GroupContext';
 
 // * COMPONENTS IMPORT
 import CustomText from '../general/CustomText';
-import Checkbox from '../general/Checkbox';
-import Badge from '../general/Badge';
 import { isToday } from '../general/Time';
+import TodayTasks from './TodayTasks';
+import TodayEvents from './TodayEvents';
 
 // * STYLES IMPORT
 import generalStyles from '../../styles/generalStyles';
@@ -30,27 +27,13 @@ const Today = () => {
   
   const printItems = () => {
     const mapTasks = groupData.tasks.map((task, index)=>{
-      if(isToday(new Date(task.date))){
-        return(
-          <View key={index} style={dashboardStyles.rowFlex}>
-            <Checkbox/>
-            <CustomText title={task.title} p style={{flex:1}}/>
-            <Badge title={"task"} task userColor={"red"} style={{flex:1}}/>
-          </View>
-        )
+      if(isToday(new Date(task.date)) && task.completed == false){
+        return <TodayTasks task={task} index={index}/>
       };
     })
     const mapEvents = groupData.events.map((event, index)=>{
       if(isToday(new Date(event.date))){
-        const eventHours = moment(event.date).format("HH");
-        const eventMinutes = moment(event.date).format("mm");
-        return(
-          <View key={index} style={dashboardStyles.rowFlex}>
-            <Checkbox/>
-            <CustomText title={event.title} p style={{flex:1}}/>
-            <Badge title={`${eventHours}:${eventMinutes}`} event style={{flex:1}}/>
-          </View>
-        )
+        return <TodayEvents event={event} index={index}/>
       }
     })
     setTodayTasks(mapTasks);

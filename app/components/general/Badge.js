@@ -7,11 +7,12 @@ const Badge = ({title, userColor, task, event}) => {
   return (
     <Text style={[
     {
+      width: 60,
       borderWidth:2,
       paddingVertical:2,
-      paddingHorizontal:12,
       borderRadius:13,
       overflow: "hidden",
+      textAlign: "center"
     },
     task && {backgroundColor: userColor},
     event && {backgroundColor: palette.light}
