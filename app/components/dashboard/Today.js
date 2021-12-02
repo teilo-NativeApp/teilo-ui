@@ -44,8 +44,10 @@ const Today = () => {
     <View style={dashboardStyles.margin}>
       <CustomText title={"Today, don't forget to:"} h2 />
       <View style={generalStyles.roundedBox}>
-        {todayTasks}
-        {todayEvents}
+        {todayTasks.length > 0 ? todayTasks : null}
+        {todayEvents.length > 0 ? todayEvents : null}
+        {todayEvents.length > 0 && todayTasks.length > 0 ? <CustomText title="Looks like you have nothing to do today!" /> : null}
+        
       </View>
     </View>
   )

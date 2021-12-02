@@ -73,7 +73,11 @@ const Calculator = () => {
     const res = await updateGroup(dataToSend);
     console.log("RESPONSE --> ", res);
     setGroupData(res);
-    reset();
+    reset({
+      expenseName: "",
+      totalCost: "",
+      date: ""
+  })
   };
 
   return (

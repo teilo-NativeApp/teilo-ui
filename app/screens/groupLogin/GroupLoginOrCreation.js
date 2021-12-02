@@ -9,6 +9,8 @@ const GroupLoginOrCreation = () => {
   const { newUser, authData, setAuthData } = useAuth();
   const { control, handleSubmit, formState: { errors } } = useForm();
 
+  
+
   const addGroupIDToUser = async (data) => {
     newUser.groups = data.apartmentID;
     const res = await updateUser(newUser);
@@ -20,10 +22,12 @@ const GroupLoginOrCreation = () => {
   };
 
   const createApartment = async (data) => {
-    const res = await createGroup({users: [newUser._id], groupName: data.apartmentName});
+    const res = await createGroup({groupName: data.apartmentName});
+    console.log("Creating an apartment...", res);
     newUser.groups = [res._id];
     if (!res.error) {
-      setAuthData(newUser);
+      setAuthData({...authData, ...newUser});
+      await updateUser({...authData, ...newUser});
     } else {
       console.log(res.error);
     };
