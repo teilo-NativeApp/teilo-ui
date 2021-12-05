@@ -8,6 +8,7 @@ const generalStyles = StyleSheet.create({
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
   },
   appContainer: {
+    flex:1,
     backgroundColor: palette.light,
     padding:10
   },

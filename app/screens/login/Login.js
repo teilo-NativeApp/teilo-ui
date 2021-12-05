@@ -1,19 +1,21 @@
-import React, { useState } from 'react'
-import { SafeAreaView, Text, TextInput, TouchableOpacity, Button, Alert } from 'react-native';
-import CustomText from '../../components/general/CustomText';
+import React from 'react'
+import { SafeAreaView, Text, TextInput, Button, View, StatusBar } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 
 // * CONTEXT IMPORT
 import { useAuth } from '../../context/AuthContext';
-import generalStyles from '../../styles/generalStyles';
-
-// * STYLES IMPORT
-
 
 // * COMPONENTS IMPORT
-// import { loginUser } from '../../hooks/apiCalls';
+import CustomText from '../../components/general/CustomText';
+import CustomButton from '../../components/general/CustomButton';
 
-const Login = () => {
+// * STYLES IMPORT
+import generalStyles from '../../styles/generalStyles';
+import loginStyles from './loginStyles';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { palette } from '../../styles/theme';
+
+const Login = ({setLogin}) => {
   const { logIn } = useAuth();
 
   const { control, handleSubmit, formState: { errors } } = useForm();
@@ -23,71 +25,57 @@ const Login = () => {
   };
 
   return (
-    <SafeAreaView style={generalStyles.AndroidSafeArea}>
-      <CustomText
-        title="Login Screen"
-        h1
-      />
-      
-      <Controller
-        control={control}
-        rules={{
-          required: true
-        }}
-        render={({ field: { onChange, value, onBlur }}) => (
-          <TextInput
-            onBlur={onBlur}
-            onChangeText={onChange}
-            value={value}
-            keyboardType="email-address"
-            placeholder="Enter email"
-            autoCapitalize="none"
-          />
-        )}
-        name="email"
-        defaultValue=""
-      />
-      {errors.email && <Text>Email is required.</Text>}
-
-      
-      <Controller
-        control={control}
-        rules={{
-          required: true
-        }}
-        render={({ field: { onChange, value, onBlur }}) => (
-          <TextInput
-            onBlur={onBlur}
-            onChangeText={onChange}
-            value={value}
-            secureTextEntry={true}
-            placeholder="Enter password"
-          />
-        )}
-        name="password"
-        defaultValue=""
-      />
-      {errors.password && <Text>Password is required.</Text>}
-
-      <Button title="Login" onPress={handleSubmit(loginHandler)}/>
-
-      {/* <TextInput
-        placeholder="Email"
-        value="Meda.Murray27@yahoo.com"
-        onChangeText={input => setEmail(input)}>
-      </TextInput>
-      <TextInput
-        placeholder="Password"
-        value="room7forlife"
-        onChangeText={input => setPassword(input)}>
-      </TextInput>
-      <TouchableOpacity onPress={loginHandler}>
-        <CustomText
-          title="Login"
-          p
+    <>
+      <View style={loginStyles.window}>
+        <CustomText title="Login" h1  style={{marginBottom:10}}/>
+        <Controller
+          control={control}
+          rules={{
+            required: true
+          }}
+          render={({ field: { onChange, value, onBlur }}) => (
+            <TextInput
+              style={loginStyles.input}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              keyboardType="email-address"
+              placeholder="Enter email"
+              autoCapitalize="none"
+            />
+          )}
+          name="email"
+          defaultValue=""
         />
-      </TouchableOpacity> */}
-    </SafeAreaView>
+        {errors.email && <Text>Email is required.</Text>}
+        <Controller
+          control={control}
+          rules={{
+            required: true
+          }}
+          render={({ field: { onChange, value, onBlur }}) => (
+            <TextInput
+              style={loginStyles.input}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              secureTextEntry={true}
+              placeholder="Enter password"
+              // placeholderTextColor={`red`}
+            />
+          )}
+          name="password"
+          defaultValue=""
+        />
+        {errors.password && <Text>Password is required.</Text>}
+
+        <CustomButton onPress={handleSubmit(loginHandler)} title="Submit" style={{marginVertical:20}}/>
+
+        <TouchableOpacity onPress={()=>setLogin(false)}>
+          <CustomText title="← back" p/>
+        </TouchableOpacity>
+      </View>
+    </>
   )
 }
 
