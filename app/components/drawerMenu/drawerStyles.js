@@ -5,11 +5,10 @@ import { palette } from '../../styles/theme';
 const drawerStyles = StyleSheet.create({
   container:{
     flex:1,
-    backgroundColor:palette.middle
+    backgroundColor:palette.light
   },
   icons:{
-    fontSize:60,
-    flex:1
+    fontSize:60
   }
 });
 

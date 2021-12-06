@@ -21,7 +21,8 @@ const Onboarding = ({navigation}) => {
       </SafeAreaView>
       <View style={onboardingStyles.window}>
         <View style={{marginVertical:30}}>
-          <CustomText title={`teilo`} h1 style={{fontSize: 100}}/>
+          <CustomText title={`teilo`} h1 style={{fontSize: 100, textAlign:"center"}}/>
+          <CustomText title={`the easiest way to split costs &\norganize apartment life`} p style={{textAlign:"center"}}/>
         </View>
         <View>
           {!login && !signup ? (

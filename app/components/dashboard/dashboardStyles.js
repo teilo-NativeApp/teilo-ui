@@ -7,6 +7,16 @@ const dashboardStyles = StyleSheet.create({
   rowFlex:{
     flexDirection:"row",
     marginVertical:3
+  },
+  balanceRow:{
+    marginBottom:40,
+    marginTop:22,
+    flexDirection:"row",
+    alignItems:"center",
+    justifyContent:"space-between"
+  },
+  balanceNumber:{
+    fontSize:24
   }
 });
 

@@ -17,7 +17,7 @@ const loginStyles = StyleSheet.create({
     backgroundColor:palette.middle,
     alignSelf: 'stretch',
     textAlign: 'center',
-    paddingVertical:14,
+    paddingVertical:10,
     borderRadius:23
   }
 });

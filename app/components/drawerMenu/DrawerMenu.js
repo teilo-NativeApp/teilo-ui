@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from 'react-native';
 import { DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer';
 
 // * STYLES IMPORT
@@ -13,8 +14,24 @@ const DrawerMenu = (props) => {
 
   return (
     <DrawerContentScrollView style={drawerStyles.container} {...props}>
-      <DrawerItemList {...props} />
-      <DrawerItem label="Logout" onPress={signOut}/>
+      <View>
+        <DrawerItemList {...props}/>
+      </View>
+      <View>
+        <DrawerItem label="Logout" onPress={signOut} labelStyle={{
+          fontFamily: 'Syne-Regular',
+          fontSize:22,
+          color:"black",
+          alignSelf: "flex-start",
+          height:40,
+          textAlign:"center",
+          borderWidth:2,
+          borderRadius:20,
+          paddingHorizontal:18,
+          paddingVertical:4,
+          overflow:"hidden"
+          }}/>
+      </View>
     </DrawerContentScrollView>
   )
 }

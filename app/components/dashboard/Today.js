@@ -28,12 +28,12 @@ const Today = () => {
   const printItems = () => {
     const mapTasks = groupData.tasks.map((task, index)=>{
       if(isToday(new Date(task.date)) && task.completed == false){
-        return <TodayTasks task={task} index={index}/>
+        return <TodayTasks task={task} key={index} index={index}/>
       };
     })
     const mapEvents = groupData.events.map((event, index)=>{
       if(isToday(new Date(event.date))){
-        return <TodayEvents event={event} index={index}/>
+        return <TodayEvents event={event} key={index} index={index}/>
       }
     })
     setTodayTasks(mapTasks);
@@ -46,7 +46,7 @@ const Today = () => {
       <View style={generalStyles.roundedBox}>
         {todayTasks.length > 0 ? todayTasks : null}
         {todayEvents.length > 0 ? todayEvents : null}
-        {todayEvents.length > 0 && todayTasks.length > 0 ? <CustomText title="Looks like you have nothing to do today!" /> : null}
+        {todayEvents.length == 0 && todayTasks.length == 0 ? <CustomText title="Nothing planned for today!" p/> : null}
         
       </View>
     </View>

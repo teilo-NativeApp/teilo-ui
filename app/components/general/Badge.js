@@ -8,6 +8,7 @@ const Badge = ({title, userColor, task, event}) => {
     <Text style={[
     {
       width: 60,
+      height:26,
       borderWidth:2,
       paddingVertical:2,
       borderRadius:13,
