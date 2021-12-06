@@ -47,7 +47,6 @@ const Today = () => {
         {todayTasks.length > 0 ? todayTasks : null}
         {todayEvents.length > 0 ? todayEvents : null}
         {todayEvents.length == 0 && todayTasks.length == 0 ? <CustomText title="Nothing planned for today!" p/> : null}
-        
       </View>
     </View>
   )

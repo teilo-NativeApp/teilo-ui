@@ -12,10 +12,10 @@ const GroupLoginOrCreation = () => {
   
 
   const addGroupIDToUser = async (data) => {
-    newUser.groups = data.apartmentID;
+    newUser.groups.push(data.apartmentID);
     const res = await updateUser(newUser);
     if (!res.error) {
-      setAuthData(newUser);
+      setAuthData({...authData, ...newUser});
     } else {
       console.log(res.error);
     };
@@ -23,8 +23,7 @@ const GroupLoginOrCreation = () => {
 
   const createApartment = async (data) => {
     const res = await createGroup({groupName: data.apartmentName});
-    console.log("Creating an apartment...", res);
-    newUser.groups = [res._id];
+    newUser.groups.push(res._id);
     if (!res.error) {
       setAuthData({...authData, ...newUser});
       await updateUser({...authData, ...newUser});
