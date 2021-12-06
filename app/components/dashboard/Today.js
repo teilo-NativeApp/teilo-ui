@@ -28,12 +28,12 @@ const Today = () => {
   const printItems = () => {
     const mapTasks = groupData.tasks.map((task, index)=>{
       if(isToday(new Date(task.date)) && task.completed == false){
-        return <TodayTasks task={task} index={index}/>
+        return <TodayTasks task={task} key={index}/>
       };
     })
     const mapEvents = groupData.events.map((event, index)=>{
       if(isToday(new Date(event.date))){
-        return <TodayEvents event={event} index={index}/>
+        return <TodayEvents event={event} key={index}/>
       }
     })
     setTodayTasks(mapTasks);
@@ -44,9 +44,11 @@ const Today = () => {
     <View style={dashboardStyles.margin}>
       <CustomText title={"Today, don't forget to:"} h2 />
       <View style={generalStyles.roundedBox}>
-        {todayTasks.length > 0 ? todayTasks : null}
-        {todayEvents.length > 0 ? todayEvents : null}
-        {todayEvents.length > 0 && todayTasks.length > 0 ? <CustomText title="Looks like you have nothing to do today!" /> : null}
+        {todayTasks}
+        {todayEvents}
+        {/* {todayTasks.length > 0 ? todayTasks : null}
+        {todayEvents.length > 0 ? todayEvents : null} */}
+        {/* {todayEvents.length > 0 && todayTasks.length > 0 ? <CustomText title="Looks like you have nothing to do today!" /> : null} */}
         
       </View>
     </View>
