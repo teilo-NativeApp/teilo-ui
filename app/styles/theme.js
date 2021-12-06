@@ -1,6 +1,12 @@
+// export const palette = {
+//   light:"#FFFFFF",
+//   middle:"#EEEEEE",
+//   dark:"#DDDDDD",
+// }
+
 export const palette = {
-  light:"#FFFFFF",
-  middle:"#EEEEEE",
+  light:"#FDFFF7",
+  middle:"#F2F7E4",
   dark:"#DDDDDD",
 }
 

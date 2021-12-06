@@ -35,8 +35,8 @@ const Balance = () => {
   })
 
   return (
-    <View style={dashboardStyles.margin}>
-      <CustomText onPress={()=>setShowIndBalances(!showIndBalances)} title={`Your balance is ${authData.overallAmount}€ ${showIndBalances ? "▴" : "▾"}`} h2/>
+    <View style={{marginBottom:40, marginTop:22}}>
+      <CustomText onPress={()=>setShowIndBalances(!showIndBalances)} title={`Your balance is ${authData.overallAmount}€ ▾`} h2/>
       {showIndBalances ? (<View style={generalStyles.roundedBox}>
         {individualBalances}
       </View>) : null}

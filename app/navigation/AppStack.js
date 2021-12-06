@@ -24,38 +24,38 @@ const AppStack = () => {
     screenOptions={{
       drawerPosition:"right",
       headerShown: false,
-      drawerActiveBackgroundColor: palette.dark,
+      drawerActiveBackgroundColor: palette.middle,
       drawerActiveTintColor: "black",
       drawerInactiveTintColor: "black"
     }} >
       <Drawer.Screen component={Calculator} name="Calculator" options={
         {drawerIcon: (()=>{
           return <Text style={drawerStyles.icons}>🧮</Text>
-        })}
+        }), drawerLabelStyle:{fontFamily: "Syne-Regular", fontSize:20}}
       }/>
 
       <Drawer.Screen component={Calendar} name="Calendar" options={
         {drawerIcon: (()=>{
           return <Text style={drawerStyles.icons}>🗓</Text>
-        })}
+        }), drawerLabelStyle:{fontFamily: "Syne-Regular", fontSize:20}}
       }/>
 
       <Drawer.Screen component={Tasks} name="Tasks" options={
         {drawerIcon: (()=>{
           return <Text style={drawerStyles.icons}>📋</Text>
-        })}
+        }), drawerLabelStyle:{fontFamily: "Syne-Regular", fontSize:20}}
       }/>
 
       <Drawer.Screen component={Dashboard} name="Dashboard" options={
         {drawerIcon: (()=>{
           return <Text style={drawerStyles.icons}>🛋</Text>
-        })}
+        }), drawerLabelStyle:{fontFamily: "Syne-Regular", fontSize:20}}
       }/>
 
       <Drawer.Screen component={Settings} name="Settings" options={
         {drawerIcon: (()=>{
           return <Text style={drawerStyles.icons}>⚙️</Text>
-        })}
+        }), drawerLabelStyle:{fontFamily: "Syne-Regular", fontSize:20}}
       }/>
 
     </Drawer.Navigator>
