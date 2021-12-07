@@ -41,7 +41,7 @@ const Signup = ({setSignup}) => {
           }}
           render={({ field: { onChange, value, onBlur }}) => (
             <TextInput
-              style={loginStyles.input}
+              style={generalStyles.input}
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
@@ -60,7 +60,7 @@ const Signup = ({setSignup}) => {
           }}
           render={({ field: { onChange, value, onBlur }}) => (
             <TextInput
-              style={loginStyles.input}
+              style={generalStyles.input}
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
@@ -79,7 +79,7 @@ const Signup = ({setSignup}) => {
           }}
           render={({ field: { onChange, value, onBlur }}) => (
             <TextInput
-              style={loginStyles.input}
+              style={generalStyles.input}
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
@@ -99,7 +99,7 @@ const Signup = ({setSignup}) => {
           }}
           render={({ field: { onChange, value, onBlur }}) => (
             <TextInput
-              style={loginStyles.input}
+              style={generalStyles.input}
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
@@ -120,7 +120,7 @@ const Signup = ({setSignup}) => {
           }}
           render={({ field: { onChange, value, onBlur }}) => (
             <TextInput
-              style={loginStyles.input}
+              style={generalStyles.input}
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
@@ -140,7 +140,7 @@ const Signup = ({setSignup}) => {
           }}
           render={({ field: { onChange, value, onBlur }}) => (
             <TextInput
-              style={loginStyles.input}
+              style={generalStyles.input}
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}

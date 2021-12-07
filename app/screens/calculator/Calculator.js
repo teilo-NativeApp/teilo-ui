@@ -81,26 +81,26 @@ const Calculator = () => {
   };
 
   return (
-    <SafeAreaView style={generalStyles.AndroidSafeArea}>
-      <StatusBar barStyle="dark-content"/>
-      <View style={generalStyles.appContainer}>
+    <>
+      <SafeAreaView style={generalStyles.AndroidSafeArea}>
+        <StatusBar barStyle="dark-content"/>
+      </SafeAreaView>
+      <ScrollView style={generalStyles.appContainer}>
         <CustomText
           title="Calculator"
           h2
         />
-        
+      
         <CustomText
           title="Overview: "
           h3
         />
-
         <Balance/>
-        
+      
         <CustomText
           title="Add Expense: "
           h3
         />
-
       <Controller
         control={control}
         rules={{
@@ -138,7 +138,6 @@ const Calculator = () => {
         defaultValue=""
       />
       {errors.totalCost && <Text>Cost is required.</Text>}
-
       <Controller
         control={control}
         rules={{
@@ -158,7 +157,6 @@ const Calculator = () => {
       />
       
       {/* take DateTimePicker out of the controller and use it to assign to the TextInput inside the form */}
-
       {isPickerOpen && (
               <View>
                 <DateTimePicker
@@ -173,9 +171,8 @@ const Calculator = () => {
                     }
                   }
                 />
-               </View>
+                </View>
       )}
-
       <Controller
         control={control}
         rules={{
@@ -212,13 +209,9 @@ const Calculator = () => {
         name="assignedUsers"
         defaultValue=""
       />: null }
-
-
       <Button title="Add Expense" onPress={handleSubmit(onSubmit)}/>
-
-
-      </View>
-    </SafeAreaView>
+      </ScrollView>
+    </>
   )
 }
 

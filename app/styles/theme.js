@@ -1,13 +1,7 @@
-// export const palette = {
-//   light:"#FFFFFF",
-//   middle:"#EEEEEE",
-//   dark:"#DDDDDD",
-// }
-
 export const palette = {
   light:"#FDFFF7",
-  middle:"#F2F7E4",
-  dark:"#DDDDDD",
+  middle:"#F7FFD7",
+  dark:"#A3A3A3",
 }
 
 export const users = {
@@ -18,4 +12,4 @@ export const users = {
   violet:"#55415F"
 }
 
-export const border = 4;
+export const border = 8;

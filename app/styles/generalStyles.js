@@ -1,4 +1,4 @@
-import { StatusBar, StyleSheet } from "react-native";
+import { StatusBar, StyleSheet, Dimensions} from "react-native";
 
 import {palette, users, border} from './theme';
 
@@ -16,8 +16,18 @@ const generalStyles = StyleSheet.create({
     backgroundColor: palette.middle,
     borderRadius: border,
     paddingHorizontal: 10,
-    paddingVertical: 5,
+    paddingVertical: 8,
     marginVertical:10
+  },
+  input:{
+    width:Dimensions.get('window').width-40,
+    marginVertical:8,
+    fontSize:18,
+    backgroundColor:palette.middle,
+    alignSelf: 'stretch',
+    textAlign: 'center',
+    paddingVertical:10,
+    borderRadius:23
   }
 });
 
