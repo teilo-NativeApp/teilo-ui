@@ -1,21 +1,39 @@
-import React, { useState } from 'react'
-import { Button, SafeAreaView, ScrollView, StatusBar, Text, TextInput, View } from 'react-native'
-import { useForm, Controller } from 'react-hook-form';
+import React from 'react'
+import { SafeAreaView, StatusBar, View } from 'react-native'
+import moment from 'moment';
+
+// * CONTEXT IMPORT
+import { useGroup } from '../../context/GroupContext';
 
 // * COMPONENTS IMPORT
 import CustomText from '../../components/general/CustomText';
-import DateTimePicker from '@react-native-community/datetimepicker';
-import SelectBox from 'react-native-multi-selectbox';
 import Balance from '../../components/dashboard/Balance';
-import AddExpense from '../addExpense/AddExpense';
+import CustomButton from '../../components/general/CustomButton';
 
 // * STYLES IMPORT
 import generalStyles from '../../styles/generalStyles';
+import calculatorStyles from './calculatorStyles';
 import { useAuth } from '../../context/AuthContext';
-import { useGroup } from '../../context/GroupContext';
-import { updateGroup } from '../../hooks/apiCalls';
 
 const Calculator = () => {
+  const {groupData} = useGroup();
+  const {authData} = useAuth();
+
+  const threeDayExpenses = groupData.expenses?.map((expense,index)=>{
+    return(
+      <View key={`b-${index}`} style={calculatorStyles.rowFlex}>
+        <View style={{width:75}}>
+          <CustomText title={`${moment(expense.date).format("DD.MM.YY")}`} p bold/>
+        </View>
+        <View style={{width:225}}>
+          <CustomText title={`${expense.expenseName}`} p/>
+        </View>
+        <View>
+          <CustomText title={`${expense.totalCost}€`} p/>
+        </View>
+      </View>
+    )
+  })
 
   return (
     <>
@@ -23,17 +41,28 @@ const Calculator = () => {
         <StatusBar barStyle="dark-content"/>
       </SafeAreaView>
       <View style={generalStyles.appContainer}>
-        <CustomText
-         title="Calculator"
-         h2
-        />
+        <CustomText title="Calculator" h1 style={{textAlign:"center"}}/>
 
-        <CustomText
-          title="Overview: "
-          h3
-        />
+        <View style={{marginTop:22}}>
+          <CustomText
+              title={`Your balance is ${authData.overallAmount>0 ? "+" : null}${authData.overallAmount.toFixed(2)}€`}
+              h2
+            />
+          <Balance/>
+        </View>
+    
+        <View style={{marginTop:22}}>
+          <CustomText 
+            // onPress={()=>setShowIndBalances(!showIndBalances)}
+            title={`Unsettled expenses`}
+            h2
+            />
+          <View style={generalStyles.roundedBox}>
+            {threeDayExpenses}
+          </View>
+        </View>
 
-        <Balance/>
+        <CustomButton onPress={console.log("hi")} title="Add Expense +" style={{marginVertical:20}}/>
       </View>
     </>
   )

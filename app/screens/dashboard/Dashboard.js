@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
-import { SafeAreaView, StatusBar, ScrollView } from "react-native";
+import { View, SafeAreaView, StatusBar, ScrollView, Dimensions } from "react-native";
 
 // * COMPONENTS IMPORT
 import { getDashboardData } from '../../hooks/apiCalls';
@@ -20,6 +20,7 @@ import generalStyles from '../../styles/generalStyles';
 const Dashboard = () => {
   const { authData, setAuthData, setLoading } = useAuth();
   const { groupData, setGroupData } = useGroup();
+  const [showIndBalances, setShowIndBalances] = useState(false)
 
   useEffect(() => {
     threeDayData();
@@ -58,9 +59,21 @@ const Dashboard = () => {
         <CustomText title={`Hey 👋 ${authData.firstName}!`} h1/>
         <CustomText title={`It's ${moment().format("dddd")}`} h1/>
         <CustomText title={`${moment().format("MMMM Do")}`} h1/>
+
         <Today/>
+
         <Upcoming/>
-        <Balance/>
+
+        {/* <Balance/> */}
+        <View style={{marginTop:22, marginBottom:60}}>
+          <CustomText 
+            onPress={()=>setShowIndBalances(!showIndBalances)}
+            title={`Your balance is ${authData.overallAmount>0 ? "+" : null}${authData.overallAmount?.toFixed(2)}€ ▾`}
+            h2
+          />
+          {showIndBalances? <Balance showIndBalances={showIndBalances}/> : null}
+        </View>
+
       </ScrollView>
     </>
   )

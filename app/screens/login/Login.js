@@ -79,4 +79,4 @@ const Login = ({setLogin}) => {
   )
 }
 
-export default Login
+export default Login;

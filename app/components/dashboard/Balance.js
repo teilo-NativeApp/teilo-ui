@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import {
-  View
-} from "react-native";
+import { View, Text } from "react-native";
 
 // * CONTEXT IMPORT
 import { useAuth } from '../../context/AuthContext';
@@ -16,36 +14,34 @@ import dashboardStyles from './dashboardStyles';
 
 const Balance = () => {
   const { authData } = useAuth();
-  const [showIndBalances, setShowIndBalances] = useState(false)
 
   const individualBalances = authData?.individualBalances?.map((item, index)=>{
     if(item.amount<0){
       return(
         <View key={`b-${index}`} style={dashboardStyles.rowFlex}>
-          <CustomText title={`You owe ${Math.abs(item.amount)}€ to ${item.firstName}`} p style={{flex:1}}/>
+          <CustomText title={`You owe ${Math.abs(item.amount.toFixed(2))}€ to ${item.firstName}`} p style={{flex:1}}/>
         </View>
       )
     } else if(item.amount>0){
       return ( 
         <View key={`b-${index}`} style={dashboardStyles.rowFlex}>
-          <CustomText title={`You are owed ${item.amount}€ by ${item.firstName}`} p style={{flex:1}}/>
+          <CustomText title={`You are owed ${item.amount.toFixed(2)}€ by ${item.firstName}`} p style={{flex:1}}/>
         </View>
       )
     } else return;
   })
 
-  return (
-    <View style={{marginBottom:40, marginTop:22}}>
-      <CustomText 
-        onPress={()=>setShowIndBalances(!showIndBalances)}
-        title={`Your balance is ${authData.overallAmount}€ ▾`}
-        h2
-      />
-      {showIndBalances ? (<View style={generalStyles.roundedBox}>
+  if(individualBalances.length>0){
+    return (
+      <View style={generalStyles.roundedBox}>
         {individualBalances}
-      </View>) : null}
-    </View>
-  )
+      </View>
+    )
+  } else {
+    return (<View style={generalStyles.roundedBox}>
+      <Text>No balances yet.</Text>
+    </View>)
+  }
 }
 
 export default Balance;
