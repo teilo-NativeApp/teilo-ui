@@ -10,6 +10,7 @@ import { useAuth } from '../../context/AuthContext';
 import CustomText from '../../components/general/CustomText';
 import Balance from '../../components/dashboard/Balance';
 import CustomButton from '../../components/general/CustomButton';
+import AddExpense from '../addExpense/AddExpense';
 
 // * STYLES IMPORT
 import generalStyles from '../../styles/generalStyles';
@@ -55,7 +56,7 @@ const Calculator = () => {
         <View style={{marginTop:22}}>
           <CustomText 
             // onPress={()=>setShowIndBalances(!showIndBalances)}
-            title={`Unsettled expenses`}
+            title={`Unsettled expenses:`}
             h2
             />
           <View style={generalStyles.roundedBox}>

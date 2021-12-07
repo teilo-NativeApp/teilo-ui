@@ -19,7 +19,7 @@ const Balance = () => {
     if(item.amount<0){
       return(
         <View key={`b-${index}`} style={dashboardStyles.rowFlex}>
-          <CustomText title={`You owe ${Math.abs(item.amount.toFixed(2))}€ to ${item.firstName}`} p style={{flex:1}}/>
+          <CustomText title={`You owe ${Math.abs(item.amount).toFixed(2)}€ to ${item.firstName}`} p style={{flex:1}}/>
         </View>
       )
     } else if(item.amount>0){

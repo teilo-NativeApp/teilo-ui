@@ -68,7 +68,7 @@ const Dashboard = () => {
         <View style={{marginTop:22, marginBottom:60}}>
           <CustomText 
             onPress={()=>setShowIndBalances(!showIndBalances)}
-            title={`Your balance is ${authData.overallAmount>0 ? "+" : null}${authData.overallAmount?.toFixed(2)}€ ▾`}
+            title={`Your balance is ${authData.overallAmount>0 ? "+" : ""}${authData.overallAmount?.toFixed(2)}€ ▾`}
             h2
           />
           {showIndBalances? <Balance showIndBalances={showIndBalances}/> : null}

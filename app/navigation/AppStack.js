@@ -28,6 +28,13 @@ const AppStack = () => {
       drawerActiveTintColor: "black",
       drawerInactiveTintColor: "black"
     }} >
+
+      <Drawer.Screen component={Dashboard} name="Dashboard" options={
+        {drawerIcon: (()=>{
+          return <Text style={drawerStyles.icons}>🛋</Text>
+        }), drawerLabelStyle:{fontFamily: "Syne-Regular", fontSize:20}}
+      }/>
+
       <Drawer.Screen component={Calculator} name="Calculator" options={
         {drawerIcon: (()=>{
           return <Text style={drawerStyles.icons}>🧮</Text>
@@ -43,12 +50,6 @@ const AppStack = () => {
       <Drawer.Screen component={Tasks} name="Tasks" options={
         {drawerIcon: (()=>{
           return <Text style={drawerStyles.icons}>📋</Text>
-        }), drawerLabelStyle:{fontFamily: "Syne-Regular", fontSize:20}}
-      }/>
-
-      <Drawer.Screen component={Dashboard} name="Dashboard" options={
-        {drawerIcon: (()=>{
-          return <Text style={drawerStyles.icons}>🛋</Text>
         }), drawerLabelStyle:{fontFamily: "Syne-Regular", fontSize:20}}
       }/>
 
