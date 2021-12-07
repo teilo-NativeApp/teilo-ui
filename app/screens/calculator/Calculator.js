@@ -47,7 +47,7 @@ const Calculator = () => {
 
         <View style={{marginTop:22}}>
           <CustomText
-              title={`Your balance is ${authData.overallAmount>0 ? "+" : null}${authData.overallAmount.toFixed(2)}€`}
+              title={`Your balance is ${authData.overallAmount>0 ? "+" : ""}${authData.overallAmount.toFixed(2)}€`}
               h2
             />
           <Balance/>

@@ -66,11 +66,11 @@ const Dashboard = () => {
 
         {/* <Balance/> */}
         <View style={{marginTop:22, marginBottom:60}}>
-          <CustomText 
+          {authData.overallAmount && <CustomText 
             onPress={()=>setShowIndBalances(!showIndBalances)}
             title={`Your balance is ${authData.overallAmount>0 ? "+" : ""}${authData.overallAmount?.toFixed(2)}€ ▾`}
             h2
-          />
+          />}
           {showIndBalances? <Balance showIndBalances={showIndBalances}/> : null}
         </View>
 
