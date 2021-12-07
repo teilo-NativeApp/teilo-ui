@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
-import { Button, SafeAreaView, ScrollView, StatusBar, Text, TextInput, View } from 'react-native'
+import { Button, Modal, Pressable, SafeAreaView, ScrollView, StatusBar, Text, TextInput, View } from 'react-native'
 import { useForm, Controller } from 'react-hook-form';
 
 // * COMPONENTS IMPORT
 import CustomText from '../../components/general/CustomText';
-import DateTimePicker from '@react-native-community/datetimepicker';
-import SelectBox from 'react-native-multi-selectbox';
 import Balance from '../../components/dashboard/Balance';
 import AddExpense from '../addExpense/AddExpense';
 
@@ -13,9 +11,9 @@ import AddExpense from '../addExpense/AddExpense';
 import generalStyles from '../../styles/generalStyles';
 import { useAuth } from '../../context/AuthContext';
 import { useGroup } from '../../context/GroupContext';
-import { updateGroup } from '../../hooks/apiCalls';
 
 const Calculator = () => {
+  const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <>
@@ -34,6 +32,10 @@ const Calculator = () => {
         />
 
         <Balance/>
+
+        <AddExpense modalVisible={modalVisible} setModalVisible={() => setModalVisible(!modalVisible)}/>
+
+        <Button title="Add Expense" onPress={() => setModalVisible(!modalVisible)}></Button>
       </View>
     </>
   )
