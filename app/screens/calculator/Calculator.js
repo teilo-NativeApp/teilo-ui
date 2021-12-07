@@ -21,19 +21,20 @@ const Calculator = () => {
     <>
       <SafeAreaView style={generalStyles.AndroidSafeArea}>
         <StatusBar barStyle="dark-content"/>
-        </SafeAreaView>
-        <View style={generalStyles.appContainer}>
-          <CustomText
-            title="Calculator"
-            h2
-          />
-      
-          <CustomText
-            title="Overview: "
-            h3
-          />
-          <Balance/>
-        </View>
+      </SafeAreaView>
+      <View style={generalStyles.appContainer}>
+        <CustomText
+         title="Calculator"
+         h2
+        />
+
+        <CustomText
+          title="Overview: "
+          h3
+        />
+
+        <Balance/>
+      </View>
     </>
   )
 }

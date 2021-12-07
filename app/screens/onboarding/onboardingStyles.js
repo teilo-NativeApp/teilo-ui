@@ -18,7 +18,6 @@ const onboardingStyles = StyleSheet.create({
     paddingHorizontal:30,
     paddingVertical:10,
     margin:20,
-    backgroundColor:palette.middle,
     overflow:"hidden"
   }
 });
