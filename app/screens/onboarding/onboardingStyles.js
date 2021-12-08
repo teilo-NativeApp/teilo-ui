@@ -12,6 +12,7 @@ const onboardingStyles = StyleSheet.create({
   borders:{
     width:140,
     height:56,
+    backgroundColor:palette.middle,
     textAlign:"center",
     borderWidth:2,
     borderRadius:28,

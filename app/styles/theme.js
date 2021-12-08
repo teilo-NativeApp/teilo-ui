@@ -1,7 +1,8 @@
 export const palette = {
-  light:"#FDFFF7",
-  middle:"#F4FFCB",
-  dark:"#A3A3A3",
+  light:"#EEE",
+  middle:"#FFF",
+  dark:"#CCC",
+  highlight:"#FFDA33"
 }
 
 export const users = {

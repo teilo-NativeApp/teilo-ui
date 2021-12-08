@@ -11,6 +11,7 @@ import Badge from '../general/Badge';
 
 // * STYLES IMPORT
 import dashboardStyles from './dashboardStyles';
+import { palette } from '../../styles/theme';
 
 const TodayTasks = ({task,index}) => {
   const { groupData, setGroupData } = useGroup();
@@ -45,7 +46,7 @@ const TodayTasks = ({task,index}) => {
 
   return(
     <View key={`t-${index}`} style={dashboardStyles.rowFlex}>
-      <Badge title={"task"} task userColor={"red"} style={{flex:1}}/>
+      <Badge title={"task"} task userColor={palette.highlight} style={{flex:1}}/>
       <CustomText title={task.title} p style={{flex:1, paddingLeft:10}}/>
       <Checkbox isChecked={checkboxState} onPress={handlePress}/>
     </View>

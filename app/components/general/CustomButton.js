@@ -1,6 +1,7 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import CustomText from '../../components/general/CustomText';
+import { palette } from '../../styles/theme';
 
 const CustomButton = ({onPress, title, style}) => {
   return(
@@ -10,6 +11,7 @@ const CustomButton = ({onPress, title, style}) => {
         height:40,
         textAlign:"center",
         borderWidth:2,
+        backgroundColor:palette.middle,
         borderRadius:20,
         paddingHorizontal:18,
         paddingVertical:4,

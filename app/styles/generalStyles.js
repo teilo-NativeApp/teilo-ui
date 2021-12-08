@@ -17,7 +17,11 @@ const generalStyles = StyleSheet.create({
     borderRadius: border,
     paddingHorizontal: 10,
     paddingVertical: 8,
-    marginVertical:10
+    marginVertical:10,
+    shadowOffset:{  width: 0,  height: 2 },
+    shadowColor: palette.dark,
+    shadowOpacity: 1,
+    shadowRadius: 8
   },
   input:{
     width:Dimensions.get('window').width-40,

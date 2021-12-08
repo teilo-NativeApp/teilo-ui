@@ -12,6 +12,7 @@ import Badge from '../general/Badge';
 // * STYLES IMPORT
 import generalStyles from '../../styles/generalStyles';
 import dashboardStyles from './dashboardStyles';
+import { palette } from '../../styles/theme';
 
 const Upcoming = () => {
   const { groupData } = useGroup();
@@ -34,7 +35,7 @@ const Upcoming = () => {
         <View key={`t-${index}`} style={dashboardStyles.rowFlex}>
           <CustomText title={`${moment(task.date).format("DD.MM.YY")}`} p bold style={{width:75}}/>
           <CustomText title={task.title} p style={{flex:1}}/>
-          <Badge title={"task"} task userColor={"red"} style={{flex:1}}/>
+          <Badge title={"task"} task userColor={palette.highlight} style={{flex:1}}/>
         </View>
       )
       if(moment(task.date).format("DD") == moment().add(1,'days').format("DD")) up1.push(newTask);
