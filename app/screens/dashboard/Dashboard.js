@@ -64,7 +64,6 @@ const Dashboard = () => {
 
         <Upcoming/>
 
-        {/* <Balance/> */}
         <View style={{marginTop:22, marginBottom:60}}>
           {authData.overallAmount && <CustomText 
             onPress={()=>setShowIndBalances(!showIndBalances)}

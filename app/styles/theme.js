@@ -1,6 +1,6 @@
 export const palette = {
   light:"#FDFFF7",
-  middle:"#F7FFD7",
+  middle:"#F4FFCB",
   dark:"#A3A3A3",
 }
 
