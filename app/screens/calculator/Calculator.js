@@ -64,7 +64,9 @@ const Calculator = () => {
           </View>
         </View>
 
-        <CustomButton onPress={() => setModalVisible(!modalVisible)} title="Add Expense +" style={{marginVertical:20}}/>
+        <View style={{flexDirection:"row", justifyContent:"center"}}>
+          <CustomButton onPress={() => setModalVisible(!modalVisible)} title="Add Expense +" style={{marginVertical:20}}/>
+        </View>
 
         <AddExpense modalVisible={modalVisible} setModalVisible={() => setModalVisible(!modalVisible)}/>
         

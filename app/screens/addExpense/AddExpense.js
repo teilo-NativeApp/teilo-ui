@@ -3,7 +3,6 @@ import {
   Button,
   Modal,
   SafeAreaView,
-  ScrollView,
   StatusBar,
   Text,
   TextInput,
@@ -13,17 +12,18 @@ import { useForm, Controller } from "react-hook-form";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import SelectBox from "react-native-multi-selectbox";
 
-// * COMPONENTS IMPORT
-import CustomText from "../../components/general/CustomText";
-import Balance from "../../components/dashboard/Balance";
-
 // * CONTEXT IMPORT
 import { useAuth } from "../../context/AuthContext";
 import { useGroup } from "../../context/GroupContext";
 import { getDashboardData, updateGroup } from "../../hooks/apiCalls";
 
+// * COMPONENTS IMPORT
+import CustomText from "../../components/general/CustomText";
+import CustomButton from "../../components/general/CustomButton";
+
 // * STYLES IMPORT
-import generalStyles from "../../styles/generalStyles";
+import addExpenseStyle from "./addExpenseStyle";
+import { palette } from "../../styles/theme";
 
 const AddExpense = ({ modalVisible, setModalVisible }) => {
   // Toggle state to close the modal
@@ -107,87 +107,113 @@ const AddExpense = ({ modalVisible, setModalVisible }) => {
   }, [submitted])
 
   return (
-    <>
-      <SafeAreaView style={generalStyles.AndroidSafeArea}>
-          <StatusBar barStyle="dark-content"/>
-      </SafeAreaView>
-      <View>
-        <Modal
-          animationType="fade"
-          visible={modalVisible}
-          onRequestClose={() => {
-            setModalVisible(!modalVisible);
+    <Modal
+      animationType="fade"
+      visible={modalVisible}
+      onRequestClose={() => {
+        setModalVisible(!modalVisible);
+      }}
+    >
+      <View style={addExpenseStyle.modalContainer}>
+        <CustomText title="Add Expense" h2 style={{textAlign:"center", marginBottom:10}}/>
+        <Controller
+          control={control}
+          rules={{
+            required: true,
           }}
-        >
-          <CustomText title="Add Expense: " h3 />
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { onChange, value, onBlur } }) => (
-              <TextInput
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-                placeholder="Title"
-                autoCapitalize="none"
-              />
-            )}
-            name="expenseName"
-            defaultValue=""
-          />
-          {errors.expenseName && <Text>Name is required.</Text>}
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { onChange, value, onBlur } }) => (
-              <TextInput
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-                keyboardType="numeric"
-                placeholder="Cost"
-              />
-            )}
-            name="totalCost"
-            defaultValue=""
-          />
-          {errors.totalCost && <Text>Cost is required.</Text>}
-          <Controller
-            control={control}
-            rules={{
-              required: false,
-            }}
-            render={({ field: { onChange, value, onBlur } }) => (
-              <TextInput
-                onFocus={() => showDatePicker()}
-                onChangeText={onChange}
-                value={date.toLocaleDateString()}
-                placeholder="Date"
-                onBlur={onBlur}
-              />
-            )}
-            name="date"
-            defaultValue=""
-          />
-          {isPickerOpen && (
-            <View>
-              <DateTimePicker
-                minimumDate={new Date(1901, 0, 1)}
-                maximumDate={new Date()}
-                value={date}
-                mode="date"
-                display="default"
-                onChange={(event, value) => {
-                  datePickerHandler(value);
-                  showDatePicker();
-                }}
-              />
-            </View>
+          render={({ field: { onChange, value, onBlur } }) => (
+            <TextInput
+              style={addExpenseStyle.input}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              placeholder="Add Title"
+              autoCapitalize="none"
+            />
           )}
+          name="expenseName"
+          defaultValue=""
+        />
+        {errors.expenseName && <Text>Name is required.</Text>}
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, value, onBlur } }) => (
+            <TextInput
+              style={addExpenseStyle.input}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              keyboardType="numeric"
+              placeholder="Add Cost"
+            />
+          )}
+          name="totalCost"
+          defaultValue=""
+        />
+        {errors.totalCost && <Text>Cost is required.</Text>}
+        <Controller
+          control={control}
+          rules={{
+            required: false,
+          }}
+          render={({ field: { onChange, value, onBlur } }) => (
+            <TextInput
+              style={addExpenseStyle.dateInput}
+              onFocus={() => showDatePicker()}
+              onChangeText={onChange}
+              value={date.toLocaleDateString()}
+              placeholder="Date"
+              onBlur={onBlur}
+            />
+          )}
+          name="date"
+          defaultValue=""
+        />
+        {isPickerOpen && (
+          <View>
+            <DateTimePicker
+              minimumDate={new Date(1901, 0, 1)}
+              maximumDate={new Date()}
+              value={date}
+              mode="date"
+              display="default"
+              onChange={(event, value) => {
+                datePickerHandler(value);
+                showDatePicker();
+              }}
+            />
+          </View>
+        )}
+        <Controller
+          control={control}
+          rules={{
+            required: false,
+          }}
+          render={({ field: { onChange, value, onBlur } }) => (
+            <SelectBox
+              label="Who paid?"
+              options={usersForSelectBox}
+              value={whoPaid}
+              onChange={onSelect()}
+              hideInputFilter={false}
+              containerStyle={addExpenseStyle.selectBox}
+              labelStyle={addExpenseStyle.label}
+              arrowIconColor="black"
+              searchIconColor="black"
+              toggleIconColor="black"
+              multiListEmptyLabelStyle={addExpenseStyle.font}
+              optionsLabelStyle={addExpenseStyle.font}
+              hideInputFilter={true}
+              optionContainerStyle={addExpenseStyle.optionContainer}
+            />
+          )}
+          name="whoPaid"
+          defaultValue=""
+        />
+        {whoPaid ? (
           <Controller
             control={control}
             rules={{
@@ -195,41 +221,35 @@ const AddExpense = ({ modalVisible, setModalVisible }) => {
             }}
             render={({ field: { onChange, value, onBlur } }) => (
               <SelectBox
-                label="Who paid?"
-                options={usersForSelectBox}
-                value={whoPaid}
-                onChange={onSelect()}
-                hideInputFilter={false}
+                label={`Who is sharing the cost with ${whoPaid.item}?`}
+                options={usersForMultiSelect}
+                selectedValues={assignedUsers}
+                onMultiSelect={onMultiChange()}
+                onTapClose={onMultiChange()}
+                isMulti
+                containerStyle={addExpenseStyle.selectBox}
+                labelStyle={addExpenseStyle.label}
+                arrowIconColor="black"
+                searchIconColor="black"
+                toggleIconColor="black"
+                multiListEmptyLabelStyle={addExpenseStyle.font}
+                optionsLabelStyle={addExpenseStyle.font}
+                hideInputFilter={true}
+                optionContainerStyle={addExpenseStyle.optionContainer}
+                multiListEmptyLabelStyle={addExpenseStyle.multi}
+                multiOptionsLabelStyle ={addExpenseStyle.multiLabel}
               />
             )}
-            name="whoPaid"
+            name="assignedUsers"
             defaultValue=""
           />
-          {whoPaid ? (
-            <Controller
-              control={control}
-              rules={{
-                required: false,
-              }}
-              render={({ field: { onChange, value, onBlur } }) => (
-                <SelectBox
-                  label={`Who else is sharing the cost with ${whoPaid.item}?`}
-                  options={usersForMultiSelect}
-                  selectedValues={assignedUsers}
-                  onMultiSelect={onMultiChange()}
-                  onTapClose={onMultiChange()}
-                  isMulti
-                />
-              )}
-              name="assignedUsers"
-              defaultValue=""
-            />
-          ) : null}
-          <Button title="Submit Expense" onPress={handleSubmit(onSubmit)} />
-          <Button title="Cancel" onPress={() => setModalVisible(false)} />
-        </Modal>
+        ) : null}
+        <View style={{flexDirection:"row", justifyContent:"space-evenly"}}>
+          <CustomButton onPress={handleSubmit(onSubmit)} title="Submit" style={{marginTop:20}}/>
+          <CustomButton onPress={() => setModalVisible(false)} title="Cancel" style={{marginTop:20}}/>
+        </View>
       </View>
-    </>
+    </Modal>
   );
 };
 
