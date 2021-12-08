@@ -3,6 +3,7 @@ import { Modal, Text, TextInput, View } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import SelectBox from "react-native-multi-selectbox";
+import { updateGroup } from "../../hooks/apiCalls";
 
 // * CONTEXT IMPORT
 import { useAuth } from "../../context/AuthContext";
@@ -14,7 +15,6 @@ import CustomButton from "../../components/general/CustomButton";
 
 // * STYLES IMPORT
 import addExpenseStyle from "./addExpenseStyle";
-import { palette } from "../../styles/theme";
 
 const AddExpense = ({ modalVisible, setModalVisible }) => {
   // Toggle state to close the modal
@@ -51,7 +51,7 @@ const AddExpense = ({ modalVisible, setModalVisible }) => {
 
   // Functions and arrays for use with Multiselect
   const usersForSelectBox = groupData.users.map((user) => {
-    return { item: `${user.firstName} ${user.lastName[0]}`, id: user._id };
+    return { item: `${user.firstName}`, id: user._id };
   });
 
   const usersForMultiSelect = usersForSelectBox.filter(
@@ -219,12 +219,12 @@ const AddExpense = ({ modalVisible, setModalVisible }) => {
                 arrowIconColor="black"
                 searchIconColor="black"
                 toggleIconColor="black"
-                multiListEmptyLabelStyle={addExpenseStyle.font}
                 optionsLabelStyle={addExpenseStyle.font}
                 hideInputFilter={true}
                 optionContainerStyle={addExpenseStyle.optionContainer}
-                multiOptionContainerStyle={{backgroundColor: palette.highlight}}
+                multiOptionContainerStyle={addExpenseStyle.multiOptionContainer}
                 multiListEmptyLabelStyle={addExpenseStyle.multi}
+                multiOptionsLabelStyle={addExpenseStyle.multiLabel}
               />
             )}
             name="assignedUsers"

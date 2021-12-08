@@ -5,8 +5,8 @@ const addExpenseStyle = StyleSheet.create({
   modalContainer: {
     flex:1,
     backgroundColor: palette.light,
-    marginTop:50,
-    padding:10
+    paddingTop:60,
+    paddingHorizontal:10
   },
   input:{
     marginVertical:10,
@@ -50,6 +50,10 @@ const addExpenseStyle = StyleSheet.create({
     margin:0,
     paddingHorizontal:21
   },
+  multiOptionContainer:{
+    backgroundColor: palette.highlight,
+    color:"black"
+  },
   multi:{
     color:"black",
     fontFamily: "Syne-Regular",
@@ -59,8 +63,7 @@ const addExpenseStyle = StyleSheet.create({
   multiLabel:{
     color:"black",
     fontFamily: "Syne-Regular",
-    fontSize:16,
-    color:palette.light,
+    fontSize:16
   }
 });
 
