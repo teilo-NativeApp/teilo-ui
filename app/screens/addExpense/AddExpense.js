@@ -1,13 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Button,
-  Modal,
-  SafeAreaView,
-  StatusBar,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { Modal, Text, TextInput, View } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import SelectBox from "react-native-multi-selectbox";
@@ -15,7 +7,6 @@ import SelectBox from "react-native-multi-selectbox";
 // * CONTEXT IMPORT
 import { useAuth } from "../../context/AuthContext";
 import { useGroup } from "../../context/GroupContext";
-import { getDashboardData, updateGroup } from "../../hooks/apiCalls";
 
 // * COMPONENTS IMPORT
 import CustomText from "../../components/general/CustomText";
@@ -89,7 +80,7 @@ const AddExpense = ({ modalVisible, setModalVisible }) => {
     data.date = date;
     data.whoPaid = whoPaid.id;
     data.assignedUsers = [...assignedUsers.map((user) => user.id), whoPaid.id];
-    
+
     const dataToSend = { expenses: data, groupID: authData.groups[0] };
     const res = await updateGroup(dataToSend);
     console.log("RESPONSE --> ", res);
@@ -101,10 +92,10 @@ const AddExpense = ({ modalVisible, setModalVisible }) => {
     });
     setSubmitted(true);
   };
-  
+
   useEffect(() => {
     submitted && setModalVisible(false);
-  }, [submitted])
+  }, [submitted]);
 
   return (
     <Modal
@@ -115,7 +106,11 @@ const AddExpense = ({ modalVisible, setModalVisible }) => {
       }}
     >
       <View style={addExpenseStyle.modalContainer}>
-        <CustomText title="Add Expense" h2 style={{textAlign:"center", marginBottom:10}}/>
+        <CustomText
+          title="Add Expense"
+          h2
+          style={{ textAlign: "center", marginBottom: 10 }}
+        />
         <Controller
           control={control}
           rules={{
@@ -154,39 +149,31 @@ const AddExpense = ({ modalVisible, setModalVisible }) => {
           defaultValue=""
         />
         {errors.totalCost && <Text>Cost is required.</Text>}
-        <Controller
-          control={control}
-          rules={{
-            required: false,
+
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            paddingHorizontal: 20,
+            marginTop: 10,
           }}
-          render={({ field: { onChange, value, onBlur } }) => (
-            <TextInput
-              style={addExpenseStyle.dateInput}
-              onFocus={() => showDatePicker()}
-              onChangeText={onChange}
-              value={date.toLocaleDateString()}
-              placeholder="Date"
-              onBlur={onBlur}
-            />
-          )}
-          name="date"
-          defaultValue=""
-        />
-        {isPickerOpen && (
-          <View>
-            <DateTimePicker
-              minimumDate={new Date(1901, 0, 1)}
-              maximumDate={new Date()}
-              value={date}
-              mode="date"
-              display="default"
-              onChange={(event, value) => {
-                datePickerHandler(value);
-                showDatePicker();
-              }}
-            />
-          </View>
-        )}
+        >
+          <CustomText title="Choose a date: " p />
+
+          <DateTimePicker
+            minimumDate={new Date(1901, 0, 1)}
+            maximumDate={new Date()}
+            value={date}
+            mode="date"
+            display="default"
+            onChange={(event, value) => {
+              datePickerHandler(value);
+            }}
+            style={{ width: 250 }}
+          />
+        </View>
+
         <Controller
           control={control}
           rules={{
@@ -236,17 +223,25 @@ const AddExpense = ({ modalVisible, setModalVisible }) => {
                 optionsLabelStyle={addExpenseStyle.font}
                 hideInputFilter={true}
                 optionContainerStyle={addExpenseStyle.optionContainer}
+                multiOptionContainerStyle={{backgroundColor: palette.highlight}}
                 multiListEmptyLabelStyle={addExpenseStyle.multi}
-                multiOptionsLabelStyle ={addExpenseStyle.multiLabel}
               />
             )}
             name="assignedUsers"
             defaultValue=""
           />
         ) : null}
-        <View style={{flexDirection:"row", justifyContent:"space-evenly"}}>
-          <CustomButton onPress={handleSubmit(onSubmit)} title="Submit" style={{marginTop:20}}/>
-          <CustomButton onPress={() => setModalVisible(false)} title="Cancel" style={{marginTop:20}}/>
+        <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
+          <CustomButton
+            onPress={handleSubmit(onSubmit)}
+            title="Submit"
+            style={{ marginTop: 20 }}
+          />
+          <CustomButton
+            onPress={() => setModalVisible(false)}
+            title="Cancel"
+            style={{ marginTop: 20 }}
+          />
         </View>
       </View>
     </Modal>
