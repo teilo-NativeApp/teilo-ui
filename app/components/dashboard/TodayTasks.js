@@ -23,7 +23,7 @@ const TodayTasks = ({task,index}) => {
         {
           text: "Cancel", onPress: () => setCheckboxState(false), style: "cancel"
         },
-        { text: "Solved", onPress: () => solveTask() }
+        { text: "Confirm", onPress: () => solveTask() }
       ]
     );
   }
