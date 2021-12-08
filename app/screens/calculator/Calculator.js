@@ -21,7 +21,9 @@ const Calculator = () => {
   const {authData} = useAuth();
   const [modalVisible, setModalVisible] = useState(false);
 
-  const threeDayExpenses = groupData.expenses?.map((expense,index)=>{
+  const threeDayExpenses = groupData.expenses?.sort((a, b) => {
+    return new Date(a.date) - new Date(b.date);
+  }).map((expense,index)=>{
     return(
       <View key={`b-${index}`} style={calculatorStyles.rowFlex}>
         <View style={{width:75}}>
